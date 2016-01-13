@@ -1,18 +1,29 @@
 import os
 
 
-def load_resources(folder, extensions=[], strip_extension=True):
+def load_resources(path, extensions=[], strip_extensions=True):
+    """
+
+    Args:
+        path:               (str) The system path of the resources dir to load
+        extensions:         (list) The file extensions to load
+        strip_extensions:    (bool) Whether or not to strip extensions of the loaded resources from the dict keys
+
+    Returns:
+        (dict) Resources in dirs and subdirs
+
+    """
+
     if not isinstance(extensions, list):
         extensions = [extensions]
 
     files_dict = {}
 
-    path = os.path.join(os.path.dirname(__file__), folder)
     for root, subdirs, files in os.walk(path):
         for file in files:
             name, ext = file.split(os.extsep)
 
-            if not strip_extension:
+            if not strip_extensions:
                 name = file
 
             if len(extensions) == 0 or ext.lower() in extensions:

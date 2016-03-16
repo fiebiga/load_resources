@@ -170,7 +170,7 @@
                     "MAP"
                 ]
             }
-        },
+        }
     },
     "parameters": {
         "credit_union_id": {
@@ -624,4 +624,3 @@
 
     }
 }
-

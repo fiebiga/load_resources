@@ -1,13 +1,14 @@
 import os
 
 
-def load_resources(path, extensions=[], strip_extensions=True):
+def load_resources(path, extensions=[], strip_extensions=True, flatten=False):
     """
 
     Args:
         path:               (str) The system path of the resources dir to load
         extensions:         (list) The file extensions to load
-        strip_extensions:    (bool) Whether or not to strip extensions of the loaded resources from the dict keys
+        strip_extensions:   (bool) Whether or not to strip extensions of the loaded resources from the dict keys
+        flatten:            (Default: False) (bool) Whether or not to maintain file structure in nested dictionary keys
 
     Returns:
         (dict) Resources in dirs and subdirs
@@ -33,8 +34,9 @@ def load_resources(path, extensions=[], strip_extensions=True):
                 update_dict = files_dict
 
                 for _dir in path_arr[:-1]:
-                    update_dict[_dir] = update_dict.get(_dir, {})
-                    update_dict = update_dict[_dir]
+                    if not flatten:
+                        update_dict[_dir] = update_dict.get(_dir, {})
+                        update_dict = update_dict[_dir]
 
                 update_dict.update({name: open(file_path, 'r').read()})
 

@@ -27,7 +27,7 @@ from setuptools import setup, find_packages
 import sys
 
 PROJECT = 'load_resources'
-__version__ = '0.11'
+__version__ = '0.12'
 
 setup(
     name=PROJECT,
